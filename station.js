@@ -11,80 +11,63 @@ var testValue = [
   [18, 18],
 ];
 
+
+
 var arr = [];
-var distanceArray = [];
-// var arr2 = [];
-// This loop is for outer array
+
+// function to get x and y axis only from link station : technically not needed but helps
 for (var i = 0; i < link_station.length; i++) {
   arr.push([link_station[i][0], link_station[i][1]]);
 }
-// console.log(arr);
 
-function distance(testValue, arr, j) {
+// function to calculate distance between point and link station (values sent as parameter in form of [x,y])
+function distance(testValue, arr) {
   var dis;
-  // console.log(arr[1]);
   dis = Math.sqrt(
     Math.pow(testValue[0] - arr[0], 2) + Math.pow(testValue[1] - arr[1], 2)
   );
-  return [dis, j];
+  return dis;
 }
 
-
-function Total_distance(test, arr) {
+// function for calculating all distances between points and links (one by one)
+function Total_distance(testValue, arr) {
   var smallestDistances = [];
-  for (var i = 0; i < test.length; i++) {
-    for (var j = 0; j < arr.length; j++) {
-      distanceArray.push(distance(test[i], arr[j], j));
-    }
+  for (var i = 0; i < testValue.length; i++) {
+    // loop for point
     var smallest = [999999];
-    var sortedArr = []
-    for (var x=0; x< distanceArray.length; x++){
-        if(distanceArray[x][0] < smallest[0]){
-            smallest = [distanceArray[x][0],x];
-        }
-         // these are distance values
-       // console.log(distanceArray[x][0])
+    for (var j = 0; j < arr.length; j++) {
+      // loop for link station
+      if (distance(testValue[i], arr[j]) < smallest[0]) {
+        smallest = [distance(testValue[i], arr[j]), j]; // getting smallest value
+      }
     }
-    //console.log("TERI MAA KAA", smallest);
-    smallestDistances.push(smallest);
-    //console.log(Math.min(distanceArray[0]))
-    distanceArray = [];
-    //console.log(" space herer")
+    smallestDistances.push(smallest); // pushing smallest value for point i
   }
-  //console.log(smallestDistances)
   return smallestDistances;
 }
 
-
-
-
+// function to calculate power takes link_station from top of code ie starting values and smallestDistances from function Total_distance
 function power(link_station, smallestDistances) {
-  var reach = [];
+  var reach = []; // array to store all reach lengths from link_stations
   for (var i = 0; i < link_station.length; i++) {
-    // console.log(link_station);
-    reach.push(link_station[i][link_station.length - 1]);
+    //console.log(link_station[i][2]);
+    reach.push(link_station[i][2]); // pushing last value(r) from link_station arr (x,y,r)
   }
-//   console.log(smallestDistances)
+  //console.log(reach);
   var powerValues = (smallestDistance, reach) => {
-    return smallestDistance.map((m)=>{
-        let distance =m[0];
-        let stationIndex =m[1];
-        if(distance > reach[stationIndex]){
-            console.log("No link station")
-            return (0)
-        }
-        var power = Math.pow((reach[stationIndex] - distance),2)
-        return power;
-    })
+    // inline function to calculate power for given point with smallestDistance and index of link_station which had that smallest distance
+    return smallestDistance.map((m) => {
+      let distance = m[0];
+      let stationIndex = m[1];
+      if (distance > reach[stationIndex]) {
+        console.log("No link station"); // condition as given in prompt
+        return 0;
+      }
+      var power = Math.pow(reach[stationIndex] - distance, 2); // calculating power as per math function
+      return power;
+    });
   };
-console.log(powerValues(smallestDistances, reach));
-//   for (var i = 0; i < reach.length; i++) {
-//     console.log("Best link station for point x,y and power is ", powerValues(smallestDistances));
-//   }
+  console.log(powerValues(smallestDistances, reach));
 }
-// console.log(testValue[1]);
-// distance(arr[1],testValue[1]);
-// console.log(distance(testValue[1],arr[1]));
-// console.log(Total_distance(arr,testValue));
-//console.log(Total_distance(testValue, arr));
-power(link_station,Total_distance(testValue, arr));
+
+power(link_station, Total_distance(testValue, arr));
