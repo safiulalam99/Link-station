@@ -27,7 +27,7 @@ resource "google_storage_bucket_object" "archive" {
 }
 
 resource "google_cloudfunctions_function" "function" {
-  name    = "terraform-function"
+  name    = "gcp-function"
   runtime = "nodejs16"
 
   available_memory_mb   = 128

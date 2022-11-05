@@ -1,7 +1,7 @@
 {
   "name": "link-station",
   "version": "1.0.0",
-  "description": "",
+  "description": "Link station app",
   "main": "index.js",
   "scripts": {
     "start": "npx functions-framework --target=main"
