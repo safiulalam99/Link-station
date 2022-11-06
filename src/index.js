@@ -1,6 +1,5 @@
-// const express = require("express");
 
-function device_distance(testValue, linkStation) {
+function deviceDistance(testValue, linkStation) {
   /**
     function to calculate the shortest distance between deviice and link station 
 
@@ -26,7 +25,7 @@ function device_distance(testValue, linkStation) {
   return maxValue;
 }
 
-function get_highest_power(smallest) {
+function getHighestPower(smallest) {
   /**
    * get_highest_power calculates the power from the data returned by {device_distance} function
      and compares to the output message
@@ -71,7 +70,7 @@ function testProgram() {
   if (output.length == 0) {
     for (var x = 0; x < testValue.length; x++) {
       output.push(
-        get_highest_power(device_distance(testValue[x], linkStation))
+        getHighestPower(deviceDistance(testValue[x], linkStation))
       );
     }
   }
@@ -90,4 +89,4 @@ if (require.main === module) {
   console.log(testProgram());
 }
 
-module.exports = { testProgram, device_distance, get_highest_power, main };
+module.exports = { testProgram,  deviceDistance, getHighestPower, main };

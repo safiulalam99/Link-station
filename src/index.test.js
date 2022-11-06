@@ -1,4 +1,4 @@
-var { device_distance, testProgram, get_highest_power } = require("./index");
+var {  deviceDistance, getHighestPower } = require("./index");
 /********************************/
 /*       Initialization        */
 /******************************/
@@ -19,7 +19,7 @@ beforeAll(() => {
     Executes get_highest_power method and store output to result array at the beginning of the test
 */
   for (var x = 0; x < testValue.length; x++) {
-    result.push(get_highest_power(device_distance(testValue[x], linkStation)));
+    result.push(getHighestPower(deviceDistance(testValue[x], linkStation)));
   }
 });
 
@@ -34,7 +34,7 @@ test("Device shortest distance from Link station", () => {
 
   var smallestDistance = [];
   for (var x = 0; x < testValue.length; x++) {
-    smallestDistance.push(device_distance(testValue[x], linkStation));
+    smallestDistance.push(deviceDistance(testValue[x], linkStation));
   }
   expect(smallestDistance.map((m) => m[0].toFixed(2))).toEqual([
     "0.00",
