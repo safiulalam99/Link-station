@@ -4,8 +4,8 @@ locals {
 }
 
 provider "google" {
-  project     = local.project_id
-  region      = "us-central1"
+  project = local.project_id
+  region  = "us-central1"
 }
 
 data "archive_file" "source" {
