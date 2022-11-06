@@ -90,7 +90,7 @@ cURL
 ```sh
 curl https://us-central1-things-367718.cloudfunctions.net/terraform-function
 ```
-Example Request
+Example Response
 ```sh
 [
 "Best link station for (0,0) is (0,0) with power 100.00",
@@ -111,7 +111,7 @@ cURL
 ```sh
 curl https://pb6vo63bt4qn3fkmofuuvho2da0hetpl.lambda-url.us-east-1.on.aws/
 ```
-Example Request
+Example Response
 ```sh
 [
 "Best link station for (0,0) is (0,0) with power 100.00",
