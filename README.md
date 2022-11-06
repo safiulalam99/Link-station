@@ -82,22 +82,44 @@ terraform apply
 This compresses the code files in a zip folder and deploys it to the cloud. More details [here](https://developer.hashicorp.com/terraform/). 
 
 #### [Google cloud](https://github.com/safiulalam99/Link-station/tree/main/GCP_Terraform)
+
+Packaged and deployed the code to Google Storage Bucket. Google Cloud Functions then retrives the package from the storage bucket, then compiles and deploy's it.
+We can check the results by making a request at the link provided or using cURL or Postman: https://us-central1-things-367718.cloudfunctions.net/terraform-function
+
+cURL
+```sh
+curl https://us-central1-things-367718.cloudfunctions.net/terraform-function
 ```
-├── GCP_Terraform
-│   └── main.tf   
+Example Request
+```sh
+[
+"Best link station for (0,0) is (0,0) with power 100.00",
+"No Link Station within reach for point (100,100)",
+"No Link Station within reach for point (15,10)",
+"Best link station for (18,18) is (20,20) with power 4.72"
+]
 ```
-- Packaged and deployed the code to Google Storage Bucket. Google Cloud Functions then retrives the package from the storage bucket, then compiles and deploy's it.
-Checkout the solution here:
-https://us-central1-things-367718.cloudfunctions.net/terraform-function
+
 #### [AWS Lambda](https://github.com/safiulalam99/Link-station/tree/main/AWS_Terraform)
-```
-├── AWS_Terraform
-│   └── main.tf   
-```
+
 - Define AWS IAM role and policy. 
 - Provide resources to create a Lambda function.
-Checkout the solution here:
+Checkout the solution here :
 https://pb6vo63bt4qn3fkmofuuvho2da0hetpl.lambda-url.us-east-1.on.aws/
+
+cURL
+```sh
+curl https://pb6vo63bt4qn3fkmofuuvho2da0hetpl.lambda-url.us-east-1.on.aws/
+```
+Example Request
+```sh
+[
+"Best link station for (0,0) is (0,0) with power 100.00",
+"No Link Station within reach for point (100,100)",
+"No Link Station within reach for point (15,10)",
+"Best link station for (18,18) is (20,20) with power 4.72"
+]
+```
 ## About the Code
 ### CI/CD Pipeline - GitHub Actions Workflow
 - The project is configured to run a CI pipeline on every push to the "main" branch. 
