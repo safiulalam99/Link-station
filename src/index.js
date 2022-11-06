@@ -1,6 +1,6 @@
 // const express = require("express");
 
-function device_distance(testValue, linkStationPoints) {
+function device_distance(testValue, linkStation) {
   /**
     function to calculate the shortest distance between deviice and link station 
 
@@ -9,17 +9,17 @@ function device_distance(testValue, linkStationPoints) {
    */
   var distance,
     maxValue = [9999999];
-  for (var i = 0; i < linkStationPoints.length; i++) {
+  for (var i = 0; i < linkStation.length; i++) {
     //Distance formula
     distance = Math.sqrt(
-      Math.pow(testValue[0] - linkStationPoints[i][0], 2) +
-        Math.pow(testValue[1] - linkStationPoints[i][1], 2)
+      Math.pow(testValue[0] - linkStation[i][0], 2) +
+        Math.pow(testValue[1] - linkStation[i][1], 2)
     );
     // retrieving smallest distance for device (x,y) to the link station (x,y)
     if (distance < maxValue[0]) {
       maxValue[0] = distance;
-      maxValue[1] = [linkStationPoints[i][0], linkStationPoints[i][1]];
-      maxValue[2] = linkStationPoints[i][2];
+      maxValue[1] = [linkStation[i][0], linkStation[i][1]];
+      maxValue[2] = linkStation[i][2];
       maxValue[3] = testValue;
     }
   }
@@ -46,7 +46,7 @@ function get_highest_power(smallest) {
   }
 }
 
-function test() {
+function testProgram() {
   /**
    * Run the program for given sample data
     
@@ -54,7 +54,6 @@ function test() {
    */
 
   var output = [];
-
   var linkStation = [
     [0, 0, 10],
     [20, 20, 5],
@@ -66,6 +65,7 @@ function test() {
     [100, 100],
     [15, 10],
     [18, 18],
+
   ];
 
   if (output.length == 0) {
@@ -78,14 +78,16 @@ function test() {
   return output;
 }
 
-exports.main = (request, response) => {
+function main(request, response) {
   /*
     main executes and runs in cloud function
    */
-  response.status(200).send(test());
-};
+  response.status(200).send(testProgram());
+}
 
 /* executes when run locally */
 if (require.main === module) {
-  console.log(test());
+  console.log(testProgram());
 }
+
+module.exports = { testProgram, device_distance, get_highest_power, main };
