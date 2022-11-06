@@ -1,8 +1,7 @@
 provider "aws" {
    region = "eu-central-1"
-   #shared_credentials_files = ["/home/rahul/.aws/credentials"]
-   access_key = "AKIAXZS3TZBQSFQQTNF5"
-   secret_key = "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"
+   access_key = ""
+   secret_key = ""
 }
 
 resource "aws_iam_role" "lambda_role" {
