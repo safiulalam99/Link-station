@@ -1,4 +1,4 @@
-const express = require("express");
+// const express = require("express");
 
 function device_distance(testValue, linkStationPoints) {
   /**
@@ -32,7 +32,7 @@ function get_highest_power(smallest) {
      and compares to the output message
 
    * @param   device_distance object with linkstation(x,y), testValue(x,y) and power
-   * @return   output message  
+   * @return  output message  
    */
 
   if (smallest[0] > smallest[smallest.length - 2]) {
