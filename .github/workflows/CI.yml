@@ -16,5 +16,6 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOG_LEVEL: DEBUG
+          VALIDATE_ALL_CODEBASE: false
           VALIDATE_TERRAFORM_TERRASCAN: false
           
