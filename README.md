@@ -99,15 +99,15 @@ https://us-central1-things-367718.cloudfunctions.net/terraform-function
 Checkout the solution here:
 https://pb6vo63bt4qn3fkmofuuvho2da0hetpl.lambda-url.us-east-1.on.aws/
 ## About the Code
-##### CI/CD Pipeline - GitHub Actions Workflow
+### CI/CD Pipeline - GitHub Actions Workflow
 - The project is configured to run a CI pipeline on every push to the "main" branch. 
 - There are 2 jobs defined in the .yml file, "build" and "super-lint". "Build" job installs the necessary dependancies and runs the unit tests.  "Super-lint" job checks the project ESLint code standards.
 - The .yml file can be found in [./.github/workflows/CI.yml](https://github.com/safiulalam99/Link-station/tree/main/.github/workflows)
-##### Src
+### Src
 - There are 4 primary methods: distance, power, printing the output and sending the output as a HTTP response. The 'main' method's functionality is to show the output as HTTP response in the cloud.
 - There are terraform directories, `./AWS_Terraform/main.tf` and `./GCP_Terraform/main.tf`. They contain the terraform configurations `main.tf` files, responsible for deploying the solutions to the cloud.
 - Subsequently, you can also run the program locally. Follow the steps below.
-##### Tests
+### Tests
 - Unit tests are written to verify the working of the functions. They are described in [./src/index.test.js](https://github.com/safiulalam99/Link-station/tree/main/src). 
 - [Jest](https://jestjs.io/), a Nodejs a library is used to write the unit tests.
 
