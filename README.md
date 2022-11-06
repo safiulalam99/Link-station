@@ -35,8 +35,7 @@ Print out function output from points (x, y):
 │   └── main.tf
 └── src
     ├── index.js
-    ├── package.json
-    └── tempCodeRunnerFile.js
+    └── package.js
 ```
 
 ## Solution
