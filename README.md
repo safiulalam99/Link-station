@@ -41,7 +41,11 @@ Print out function output from points (x, y):
 ---
 # Solution
 ## Tech Stack
-![The San Juan Mountains are beautiful!](https://img.icons8.com/color/48/000000/javascript.png "San Juan Mountains") ![The San Juan Mountains are beautiful!](https://img.icons8.com/color/48/000000/terraform.png "San Juan Mountains") ![The San Juan Mountains are beautiful!](https://img.icons8.com/color/48/000000/amazon-web-services.png "San Juan Mountains") ![The San Juan Mountains are beautiful!](https://img.icons8.com/color/48/000000/google-cloud.png "San Juan Mountains") ![rsz_2jest-logo-png-transparent](https://user-images.githubusercontent.com/82179767/200190202-bff7a8b2-31a1-4275-b7d2-22aa6eff4025.png)
+![Javascript!](https://img.icons8.com/color/48/000000/javascript.png "Javascript") &nbsp;&nbsp;&nbsp;
+![Terraform!](https://img.icons8.com/color/48/000000/terraform.png "San Juan Mountains") &nbsp;&nbsp;&nbsp;
+![AWS!](https://img.icons8.com/color/48/000000/amazon-web-services.png "AWS") &nbsp;&nbsp;&nbsp;
+![AWS!](https://img.icons8.com/color/48/000000/google-cloud.png "google") &nbsp;&nbsp;&nbsp;
+![rsz_2jest-logo-png-transparent](https://user-images.githubusercontent.com/82179767/200190202-bff7a8b2-31a1-4275-b7d2-22aa6eff4025.png) &nbsp;&nbsp;&nbsp;
 
 ## Project structure
 
@@ -56,20 +60,20 @@ Print out function output from points (x, y):
     ├── test.index.js           // Unit tests for index.js
     └── package.js
 ```
-## Terraform
+## Google Cloud functions & AWS Lambda
 
-
+### How to deploy using Terraform
 Terraform allows developers to define the desired state of the infrastructure.
 To demonstrate how easy it is to deploy code using **Terraform**, I have deployed the code simultaneously to **AWS Lambda** and **Google Cloud Functions** with just a few configurations.
 
-#### How to deploy 
-##### Prerequisites
-Download **Terraform** to local machine from [here](https://developer.hashicorp.com/terraform/downloads).
+Prerequisites 
+
+- Download **Terraform** to local machine from [here](https://developer.hashicorp.com/terraform/downloads).
 Connect cloud providers CLI in local terminal.
 
-`main.tf` contain all the provider methods for the application infrastructure to be deployed to the cloud. Terraform documentation for different cloud providers can be found [here](https://developer.hashicorp.com/terraform/tutorials).  
+`main.tf` contains the provider methods for the application infrastructure to be deployed to the cloud. Terraform documentation for different cloud providers can be found [here](https://developer.hashicorp.com/terraform/tutorials).  
 
-Commands to deploy code in terraform:
+Commands to deploy code using terraform:
 
 ``` sh
 # Initialize the main.tf file
@@ -81,7 +85,7 @@ terraform apply
 ```
 This compresses the code files in a zip folder and deploys it to the cloud. More details [here](https://developer.hashicorp.com/terraform/). 
 
-#### [Google cloud](https://github.com/safiulalam99/Link-station/tree/main/GCP_Terraform)
+### Google cloud
 
 Packaged and deployed the code to Google Storage Bucket. Google Cloud Functions then retrives the package from the storage bucket, then compiles and deploy's it.
 We can check the results by making a request at the link provided or using cURL or Postman: https://us-central1-things-367718.cloudfunctions.net/terraform-function
@@ -90,7 +94,7 @@ cURL
 ```sh
 curl https://us-central1-things-367718.cloudfunctions.net/terraform-function
 ```
-Example Response
+Response
 ```sh
 [
 "Best link station for (0,0) is (0,0) with power 100.00",
@@ -100,18 +104,19 @@ Example Response
 ]
 ```
 
-#### [AWS Lambda](https://github.com/safiulalam99/Link-station/tree/main/AWS_Terraform)
+### AWS Lambda
 
 - Define AWS IAM role and policy. 
 - Provide resources to create a Lambda function.
-Checkout the solution here :
+Visit
 https://pb6vo63bt4qn3fkmofuuvho2da0hetpl.lambda-url.us-east-1.on.aws/
+Or cURL the URL in your console to get the results.
 
-cURL
+**cURL**
 ```sh
 curl https://pb6vo63bt4qn3fkmofuuvho2da0hetpl.lambda-url.us-east-1.on.aws/
 ```
-Example Response
+**Response**
 ```sh
 [
 "Best link station for (0,0) is (0,0) with power 100.00",
@@ -125,13 +130,17 @@ Example Response
 - The project is configured to run a CI pipeline on every push to the "main" branch. 
 - There are 2 jobs defined in the .yml file, "build" and "super-lint". "Build" job installs the necessary dependancies and runs the unit tests.  "Super-lint" job checks the project ESLint code standards.
 - The .yml file can be found in [./.github/workflows/CI.yml](https://github.com/safiulalam99/Link-station/tree/main/.github/workflows)
+
+### Tests
+- Unit tests are written to verify the working of the functions. They are described in [./src/index.test.js](https://github.com/safiulalam99/Link-station/tree/main/src). 
+- [Jest](https://jestjs.io/), a Nodejs a library is used to write the unit tests.
+
+
 ### Src
 - There are 4 primary methods: distance, power, printing the output and sending the output as a HTTP response. The 'main' method's functionality is to show the output as HTTP response in the cloud.
 - There are terraform directories, `./AWS_Terraform/main.tf` and `./GCP_Terraform/main.tf`. They contain the terraform configurations `main.tf` files, responsible for deploying the solutions to the cloud.
 - Subsequently, you can also run the program locally. Follow the steps below.
-### Tests
-- Unit tests are written to verify the working of the functions. They are described in [./src/index.test.js](https://github.com/safiulalam99/Link-station/tree/main/src). 
-- [Jest](https://jestjs.io/), a Nodejs a library is used to write the unit tests.
+
 
 
 
